@@ -11,8 +11,13 @@
               hide-details="auto"
             ></v-text-field>
           </v-col>
-          <v-btn class="post-list-btn mr-4" color="primary">Filter</v-btn>
-          <v-btn class="post-list-btn mr-4" color="primary">Create</v-btn>
+          <v-btn class="user-list-btn mr-4" color="primary">Filter</v-btn>
+          <v-btn
+            :to="{ name: 'user-create' }"
+            class="post-list-btn mr-4"
+            color="primary"
+            >Create</v-btn
+          >
         </v-row>
       </v-form>
     </v-card-title>

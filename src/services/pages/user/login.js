@@ -33,6 +33,6 @@ export default {
                     this.error = err.response.data.errors.message;
                     console.log(err);
                 });
-        }
+            }
     }
 };

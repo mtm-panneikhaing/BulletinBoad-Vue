@@ -5,7 +5,14 @@ import Login from "../pages/user/Login";
 import PostList from "../pages/post/PostList";
 import PostCreate from "../pages/post/PostCreate";
 import PostCreateConfirm from "../pages/post/PostCreateConfirm";
+import PostUpdate from "../pages/post/PostUpdate";
+import PostUpdateConfirm from "../pages/post/PostUpdateConfirm";
+import Upload from "../pages/post/Upload";
 import UserList from "../pages/user/UserList";
+import UserCreate from "../pages/user/UserCreate";
+import UserProfile from "../pages/user/UserProfile";
+import EditProfile from "../pages/user/EditProfile";
+import ChangePassword from "../pages/user/ChangePassword";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -37,12 +44,51 @@ const routes = [
         component: PostCreateConfirm
     },
     {
-        path: "/post/insert",
-        name: "post-insert",
+        path: "/post/update",
+        name: "post-update",
+        component: PostUpdate
+    },
+    {
+        path: "/post/delete",
+        name: "post-delete",
+    },
+    {
+        path: "/upload",
+        name: "upload",
+        component: Upload
+    },
+    {
+        path: "/download",
+        name: "download",
+    },
+    {
+        path: "/post/update/confirm",
+        name: "post-update-confirm",
+        component: PostUpdateConfirm
     },
     {
         path: "/*",
         redirect: "/post/list",
+    },
+    {
+        path: "/user/create",
+        name: "user-create",
+        component: UserCreate,
+    },
+    {
+        path: "/user/profile",
+        name: "user-profile",
+        component: UserProfile,
+    },
+    {
+        path: "/edit/profile",
+        name: "edit-profile",
+        component: EditProfile,
+    },
+    {
+        path: "/change/password",
+        name: "change-password",
+        component: ChangePassword,
     },
 ];
 

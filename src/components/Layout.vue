@@ -11,6 +11,11 @@
               <router-link :to="{ name: 'user-list' }" class="route-link ml-2"
                 >Users</router-link
               >
+              <router-link
+                :to="{ name: 'user-profile' }"
+                class="route-link ml-2"
+                >User</router-link
+              >
               <router-link :to="{ name: 'post-list' }" class="route-link ml-2"
                 >Posts</router-link
               >

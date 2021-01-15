@@ -46,6 +46,41 @@ export default new Vuex.Store({
                 commit("setPostData", data);
             });
         },
+        update({ commit }, credentials) {
+            return axios.post("/post/update/confirm", credentials).then(({ data }) => {
+                commit("setPostData", data);
+            });
+        },
+        // updatePost({ commit }, credentials) {
+        //     return axios.post("/post/update", credentials).then(({ data }) => {
+        //         commit("setPostData", data);
+        //     });
+        // },
+        changePassword({ commit }, credentials) {
+            return axios.post("/changePassword", credentials).then(({ data }) => {
+                commit("setPostData", data);
+            });
+        },
+        /********************** *//********************** */
+        /********************** *//********************** */
+        /********************** *//********************** */
+
+
+        updatePost({ commit }, context) {
+            return axios.post('/post/update', context)
+                .then(({ data }) => {
+                    commit("setPostData", data);
+                })
+        }
+
+
+
+
+
+        /********************** *//********************** */
+        /********************** *//********************** */
+        /********************** *//********************** */
+
 
     },
     getters: {
@@ -74,6 +109,11 @@ export default new Vuex.Store({
         postDescription: (state) => {
             if (state.post && state.post.description) {
                 return state.post.description;
+            }
+        },
+        postUpdateTitle: (state) => {
+            if (state.post && state.post.title) {
+                return state.post.title;
             }
         }
     },

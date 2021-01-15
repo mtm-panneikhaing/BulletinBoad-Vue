@@ -3,6 +3,7 @@ export default {
   data: () => {
     return {
       valid: true,
+      id: "",
       title: "",
       description: " ",
       error: "",
@@ -17,6 +18,7 @@ export default {
   mounted() {
     this.title = this.$store.state.post.title;
     this.description = this.$store.state.post.description;
+    this.id = this.$store.state.post.id;
 
   },
   computed: {
@@ -24,15 +26,16 @@ export default {
   },
   methods: {
     /**
-     * This to submig create confirmation form.
+     * This to submig update confirmation form.
      * @returns void
      */
-    createPost() {
-      console.log(this.title, this.description);
+    updatePost() {
+      console.log(this.title, this.description, this.id);
       this.$store
-        .dispatch("createPost", {
+        .dispatch("updatePost", {
           title: this.title,
           description: this.description,
+          id: this.id,
         })
         .then(() => {
           this.error = "";

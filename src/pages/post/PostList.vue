@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-card-title>
-      Post list
+      Post list {{ userId }}
+
       <v-spacer></v-spacer>
       <v-form ref="form">
         <v-row class="filter-bar">
@@ -18,32 +19,62 @@
             color="primary"
             >Create</v-btn
           >
-          <v-btn class="post-list-btn mr-4" color="primary">Upload</v-btn>
-          <v-btn class="post-list-btn mr-4" color="primary">Download</v-btn>
+          <v-btn
+            :to="{ name: 'upload' }"
+            class="post-list-btn mr-4"
+            color="primary"
+            >Upload</v-btn
+          >
+          <v-btn
+            v-on:click="download()"
+            class="post-list-btn mr-4"
+            color="primary"
+            >Download</v-btn
+          >
         </v-row>
       </v-form>
     </v-card-title>
     <v-container>
       <v-data-table :headers="headers" :items="showList">
         <template v-slot:[`item.title`]="{ item }">
-          <a v-if="item.title">{{ item.title }}</a>
+          <a
+            v-if="item.title"
+            v-on:click="show(item.id, item.title, item.description)"
+            >{{ item.title }}</a
+          >
         </template>
-        <template v-slot:[`item.operation`]>
+        <template v-slot:[`item.operation`]="{ item }">
           <v-row>
             <div class="operation-btn">
-              <v-btn color="primary" class="post-list-btn">Edit</v-btn>
+              <v-btn
+                color="primary"
+                class="post-list-btn"
+                @click="updatePost(item.id)"
+                >Edit</v-btn
+              >
             </div>
             <div class="operation-btn">
               <v-btn
                 color="error"
                 class="post-list-btn"
-                v-on:click="DeleteUser(), index"
+                v-on:click="DeleteUser(item.id)"
                 >Delete</v-btn
               >
             </div>
           </v-row>
         </template>
       </v-data-table>
+      <!-- <modal
+        name="postDetail"
+        @before-open="beforeOpen"
+        @before-close="beforeClose"
+      >
+        <div slot="top-right">
+          <button @click="$modal.hide('postDetail')">close</button>
+        </div>
+      </modal> -->
+      <!-- <v-modal></v-modal> -->
+      <modal name="hello">Hello world modal</modal>
     </v-container>
   </v-card>
 </template>

@@ -6,6 +6,12 @@ import store from "./store";
 import axios from "axios";
 import moment from "moment";
 import vuetify from "./plugins/vuetify";
+import VModal from "vue-js-modal";
+Vue.use(VModal);
+
+// Vue.use(VModal, {
+//     dialog: true
+// });
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
@@ -15,6 +21,7 @@ new Vue({
     router,
     store,
     vuetify,
+
     render: (h) => h(App),
     /**
      * This is to set token to any request to server side.
@@ -24,7 +31,6 @@ new Vue({
         axios.interceptors.request.use(
             function (config) {
                 if (store.state.user) {
-                    console.log(store.state.user.success);
                     const tokenType = store.state.user.token_type;
                     const token = store.state.user.access_token;
                     if (token) config.headers.Authorization = `${tokenType} ${token}`;
