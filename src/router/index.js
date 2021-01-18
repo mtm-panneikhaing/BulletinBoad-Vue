@@ -10,6 +10,7 @@ import PostUpdateConfirm from "../pages/post/PostUpdateConfirm";
 import Upload from "../pages/post/Upload";
 import UserList from "../pages/user/UserList";
 import UserCreate from "../pages/user/UserCreate";
+import UserCreateConfirm from "../pages/user/UserCreateConfirm";
 import UserProfile from "../pages/user/UserProfile";
 import EditProfile from "../pages/user/EditProfile";
 import ChangePassword from "../pages/user/ChangePassword";
@@ -67,13 +68,14 @@ const routes = [
         component: PostUpdateConfirm
     },
     {
-        path: "/*",
-        redirect: "/post/list",
-    },
-    {
         path: "/user/create",
         name: "user-create",
         component: UserCreate,
+    },
+    {
+        path: "/user/create/confirm",
+        name: "user-create-confirm",
+        component: UserCreateConfirm
     },
     {
         path: "/user/profile",
@@ -89,6 +91,10 @@ const routes = [
         path: "/change/password",
         name: "change-password",
         component: ChangePassword,
+    },
+    {
+        path: "/*",
+        redirect: "/post/list",
     },
 ];
 

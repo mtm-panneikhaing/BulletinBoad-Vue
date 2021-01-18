@@ -8,21 +8,11 @@
         <div class="post-input">
           <v-label class="label-title">Title:</v-label>
           <v-label>{{ postTitle }}</v-label>
-          <!-- <input :value="title" type="hidden" /> -->
           <span></span>
         </div>
         <v-label class="label-title">Description:</v-label>
         <v-label>{{ postDescription }}</v-label>
-        <div class="post-input">
-          <!-- <input
-            type="hidden"
-            v-model="description"
-            value="{{postDescription}}"
-            hide-details="auto"
-          /> -->
-          <!-- <span>{{ postTitle }}</span>
-          <div :description="postDescription"></div> -->
-        </div>
+        <div class="post-input"></div>
       </v-card-text>
       <v-card-actions>
         <div class="post-action">

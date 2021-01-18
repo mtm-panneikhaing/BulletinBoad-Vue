@@ -2,7 +2,6 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      postInfo: null,
       dialogTitle: "",
       dialog: false,
       isDeleteDialog: false,
@@ -41,12 +40,14 @@ export default {
           value: "operation",
         },
       ],
-      postList: [],
+      userList: [],
       showList: [],
+      search: '',
     };
   },
+
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", "userId"]),
     headers() {
       if (!this.isLoggedIn) {
         return this.headerList.slice(0, this.headerList.length - 1);
@@ -56,6 +57,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$store.state.user);
     this.$axios
       .get("/user/list")
       .then((response) => {
@@ -67,21 +69,26 @@ export default {
       });
   },
   methods: {
-    /**
-     * This is to filter posts of datatable.
-     * @returns void
-     */
-    filterPosts() {
+    filterUser() {
       this.showList = this.userList.filter((user) => {
         return (
-          user.name.includes(this.name) ||
-          user.email.includes(this.email) ||
-          user.phone.includes(this.phone) ||
-          user.address.includes(this.address) ||
-          user.dob.includes(this.dob) ||
-          user.create_user_id.includes(this.create_user_id)
+          user.name.includes(this.search) ||
+          user.email.includes(this.search)
         );
       });
     },
+    deleteUser(id) {
+      if (confirm("Do you really want to delete? " + id)) {
+        console.log(id);
+        this.$axios.delete('/user/delete' + id)
+          .then(() => {
+            this.error = " ",
+              console.log("delete successful");
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      }
+    }
   },
 };

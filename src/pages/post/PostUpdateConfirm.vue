@@ -5,12 +5,8 @@
     </v-card-title>
     <v-form ref="form" @submit.prevent="updatePost">
       <v-card-text>
-        <div class="post-input">
-          <v-label class="label-title">Title:</v-label>
-          <v-label>{{ postTitle }}</v-label>
-          <!-- <input :value="title" type="hidden" /> -->
-          <span></span>
-        </div>
+        <v-label class="label-title">Title:</v-label>
+        <v-label>{{ postTitle }}</v-label>
         <v-label class="label-title">Description:</v-label>
         <v-label>{{ postDescription }}</v-label>
       </v-card-text>

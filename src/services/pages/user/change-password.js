@@ -1,15 +1,10 @@
 export default {
   data: () => {
-    // return {
-    //   valid: true,
-    //   title: "",
-    //   description: " ",
-    //   error: "",
-    // }
+
   },
   methods: {
     /**
-     * This to submig create confirmation form.
+     * This is to change password
      * @returns void
      */
     changePassword() {

@@ -1,15 +1,4 @@
 export default {
-  // data: () => ({
-  //   valid: true,
-  //   title: "",
-  //   description: "",
-  //   error: "",
-  //   // validation rules for post title.
-  //   titleRules: [value => !!value || "The title field is required."],
-
-  //   // validation rules for description.
-  //   descriptionRules: [value => !!value || "The title field is required."]
-  // }),
   data: () => {
     return {
       valid: true,

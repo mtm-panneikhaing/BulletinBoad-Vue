@@ -1,17 +1,15 @@
-.create-post-title {
+.create-user-title {
     background: #1976d2;
     color: #ffffff;
+    margin: auto;
 }
-
-.post-input {
-    height: 70px;
+.user-input {
+    height: 40px;
 }
-
-.post-action {
+.user-action {
     margin: 0px 7px 7px 7px;
 }
-
-.post-error {
+.user-error {
     color: red;
     text-align: center;
     font-size: 20px;

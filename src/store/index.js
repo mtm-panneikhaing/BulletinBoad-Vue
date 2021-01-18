@@ -36,6 +36,17 @@ export default new Vuex.Store({
                 commit("setUserData", null);
             });
         },
+        createUser({ commit }, credentials) {
+            console.log(credentials);
+            return axios.post("/user/create", credentials).then(({ data }) => {
+                commit("setUserData", data);
+            });
+        },
+        createUserConfirm({ commit }, credentials) {
+            return axios.post("/user/create/confirm", credentials).then(({ data }) => {
+                commit("setUserData", data);
+            });
+        },
         create({ commit }, credentials) {
             return axios.post("/post/create", credentials).then(({ data }) => {
                 commit("setPostData", data);
@@ -51,37 +62,17 @@ export default new Vuex.Store({
                 commit("setPostData", data);
             });
         },
-        // updatePost({ commit }, credentials) {
-        //     return axios.post("/post/update", credentials).then(({ data }) => {
-        //         commit("setPostData", data);
-        //     });
-        // },
         changePassword({ commit }, credentials) {
             return axios.post("/changePassword", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
         },
-        /********************** *//********************** */
-        /********************** *//********************** */
-        /********************** *//********************** */
-
-
         updatePost({ commit }, context) {
             return axios.post('/post/update', context)
                 .then(({ data }) => {
                     commit("setPostData", data);
                 })
-        }
-
-
-
-
-
-        /********************** *//********************** */
-        /********************** *//********************** */
-        /********************** *//********************** */
-
-
+        },
     },
     getters: {
         isLoggedIn: (state) => !!state.user,
@@ -115,16 +106,48 @@ export default new Vuex.Store({
             if (state.post && state.post.title) {
                 return state.post.title;
             }
-        }
-    },
-    // setters: {
-    //     postTitle: () => {
-    //         this.state.post.data.title = this.title;
-    //     },
-    //     postDescription: () => {
-    //         this.state.post.data.description = this.description;
-    //     }
+        },
+        registerName: (state) => {
+            if (state.user && state.user.name) {
+                return state.user.name;
+            }
+        },
+        registerEmail: (state) => {
+            if (state.user && state.user.email) {
+                return state.user.email;
+            }
+        },
+        registerPassword: (state) => {
+            if (state.user && state.user.password) {
+                return state.user.password;
+            }
+        },
+        registerPhone: (state) => {
+            if (state.user && state.user.phone) {
+                return state.user.phone;
+            }
+        },
+        registerDob: (state) => {
+            if (state.user && state.user.dob) {
+                return state.user.dob;
+            }
+        },
+        registerAddress: (state) => {
+            if (state.user && state.user.address) {
+                return state.user.address;
+            }
+        },
+        registerType: (state) => {
+            if (state.user && state.user.type) {
+                return state.user.type;
+            }
+        },
+        registerProfile: (state) => {
+            if (state.user && state.user.profile) {
+                return state.user.profile;
+            }
+        },
 
-    // },
+    },
     plugins: [createPersistedState()],
 });

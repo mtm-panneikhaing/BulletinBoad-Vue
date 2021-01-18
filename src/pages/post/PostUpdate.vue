@@ -5,8 +5,6 @@
     </v-card-title>
     <v-form ref="form" @submit.prevent="updatePost">
       <v-card-text>
-        <!-- <div class="title-error">{{ error }}</div>
-        <div class="login-error">{{ error }}</div> -->
         <div class="text-input">
           <v-text-field
             type="text"

@@ -31,6 +31,7 @@ new Vue({
         axios.interceptors.request.use(
             function (config) {
                 if (store.state.user) {
+                    console.log(store.state.user);
                     const tokenType = store.state.user.token_type;
                     const token = store.state.user.access_token;
                     if (token) config.headers.Authorization = `${tokenType} ${token}`;

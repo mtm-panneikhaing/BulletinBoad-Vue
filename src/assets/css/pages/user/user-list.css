@@ -2,11 +2,11 @@
     padding: 0px 10px;
 }
 
-.post-list-btn {
+.user-list-btn {
     margin: auto;
 }
 
-.post-list-btn:hover {
+.user-list-btn:hover {
   text-decoration: none;
 }
 

@@ -32,7 +32,11 @@ export default {
             postList: [],
             showList: [],
             update: [],
-            postDetail: []
+            postDetail: [],
+            search: '',
+            title: '',
+            description: '',
+
         };
     },
     computed: {
@@ -62,23 +66,21 @@ export default {
          * This is to filter posts of datatable.
          * @returns void
          */
-        filterPosts() {
+        filterPost() {
             this.showList = this.postList.filter((post) => {
                 return (
-                    post.id.includes(this.id) ||
-                    post.title.includes(this.title) ||
-                    post.description.includes(this.description) ||
-                    post.create_user_id.includes(this.create_user_id)
+                    post.title.includes(this.search) ||
+                    post.description.includes(this.search)
                 );
             });
         },
-        DeleteUser(id) {
+        deletePost(id) {
             if (confirm("Do you really want to delete?" + id)) {
                 console.log(id);
                 this.$axios.delete('/post/delete' + id)
                     .then(() => {
                         this.error = "";
-                        //this.$store.state.post.splice(1, id);
+                        //this.$store.state.post.splice(id, index);
                         //this.$router.push({ name: "post-list" });
                     })
                     .catch(error => {
@@ -86,76 +88,24 @@ export default {
                     })
             }
         },
-        /********************** *//********************** */
-        /********************** *//********************** */
-        /********************** *//********************** */
         updatePost(id) {
-            this.$store
-                .dispatch("updatePost", {
-                    title: this.title,
-                    description: this.description,
-                    updatePostID: id
+            this.$axios.get('/post/update' + id)
+                .then((response) => {
+                    this.error = ""
+                    this.$store.state.post.title = response.data.title;
+                    this.$store.state.post.description = response.data.description;
+                    this.$store.state.post.id = response.data.id;
+                    this.$router.push({ name: "post-update" });
                 })
-                .then(() => {
-                    this.error = "";
-                    this.$router.push({ name: "post-list" });
+                .catch(error => {
+                    console.log("Update post" + error);
                 })
-                .catch(err => {
-                    this.error = err.response.data.errors;
-                    console.log(err);
-                });
-
-            // console.log(id);
-            // this.$axios.get('/post/update' + id)
-            //     .then((response) => {
-            //         this.error = ""
-            //         this.$store.state.post.title = response.data.title;
-            //         this.$store.state.post.description = response.data.description;
-            //         this.$store.state.post.id = response.data.id;
-            //         console.log(this.$store.state.post.title);
-            //         this.$router.push({ name: "post-update" });
-            //     })
-            //     .catch(error => {
-            //         console.log("Update post" + error);
-            //     })
         },
-        /********************** *//********************** */
-        /********************** *//********************** */
-        /********************** *//********************** */
-        /********************** *//********************** */
         download() {
             this.$axios.get('/download')
                 .then(() => { console.log("download successful"); });
 
         },
-        //     console.log("you can called" + id + " " + title + description);
-        //     this.$modal.show("dialog", {
-        //         title: "Posts Detail",
-        //         text: title,
-        //         buttons: [
-        //             {
-        //                 title: "Cancel",
-        //                 handler: () => {
-        //                     this.$modal.hide("dialog");
-        //                     console.log("to reach handlers");
-        //                 }
-        //             },
-        //             {
-        //                 title: "Like",
-        //                 handler: () => {
-        //                     alert("Like Action");
-        //                 }
-        //             },
-        //             {
-        //                 title: "ok",
-        //                 handler: () => {
-        //                     alert("success");
-        //                 }
-        //             }
-        //         ]
-        //     });
-
-        // }, 
         show() {
             this.$modal.show("hello");
         },

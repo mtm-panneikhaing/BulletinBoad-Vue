@@ -4,7 +4,7 @@ export default {
     return {
       valid: true,
       title: "",
-      description: " ",
+      description: "",
       error: "",
 
       //  validation rules for post title.

@@ -1,18 +1,20 @@
 <template>
   <v-card>
     <v-card-title>
-      Post list {{ userId }}
-
+      Post list
       <v-spacer></v-spacer>
-      <v-form ref="form">
+      <v-form ref="form" @submit.prevent="filterPost">
         <v-row class="filter-bar">
           <v-col md="2.5">
             <v-text-field
+              v-model="search"
               label="Search keyword"
               hide-details="auto"
             ></v-text-field>
           </v-col>
-          <v-btn class="post-list-btn mr-4" color="primary">Filter</v-btn>
+          <v-btn type="submit" class="post-list-btn mr-4" color="primary"
+            >Filter</v-btn
+          >
           <v-btn
             :to="{ name: 'post-create' }"
             class="post-list-btn mr-4"
@@ -57,24 +59,14 @@
               <v-btn
                 color="error"
                 class="post-list-btn"
-                v-on:click="DeleteUser(item.id)"
+                v-on:click="deletePost(item.id)"
                 >Delete</v-btn
               >
             </div>
           </v-row>
         </template>
       </v-data-table>
-      <!-- <modal
-        name="postDetail"
-        @before-open="beforeOpen"
-        @before-close="beforeClose"
-      >
-        <div slot="top-right">
-          <button @click="$modal.hide('postDetail')">close</button>
-        </div>
-      </modal> -->
-      <!-- <v-modal></v-modal> -->
-      <modal name="hello">Hello world modal</modal>
+      <!-- <modal name="hello">Hello world modal</modal> -->
     </v-container>
   </v-card>
 </template>
