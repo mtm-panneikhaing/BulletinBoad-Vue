@@ -5,10 +5,11 @@ export default {
     data() {
         return {
             title: constants.APP_TITLE,
-        };
+            userName: this.$store.state.userName,
+        }
     },
     computed: {
-        ...mapGetters(["isLoggedIn", "userType", "userName"]),
+        ...mapGetters(["isLoggedIn", "userType"]),
     },
     methods: {
         /**

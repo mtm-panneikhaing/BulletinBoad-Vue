@@ -13,6 +13,7 @@ import UserCreate from "../pages/user/UserCreate";
 import UserCreateConfirm from "../pages/user/UserCreateConfirm";
 import UserProfile from "../pages/user/UserProfile";
 import EditProfile from "../pages/user/EditProfile";
+import UserUpdateConfirm from "../pages/user/UserUpdateConfirm";
 import ChangePassword from "../pages/user/ChangePassword";
 import store from "../store";
 
@@ -24,15 +25,11 @@ const routes = [
         name: "login",
         component: Login,
     },
+
     {
         path: "/post/list",
         name: "post-list",
         component: PostList,
-    },
-    {
-        path: "/user/list",
-        name: "user-list",
-        component: UserList,
     },
     {
         path: "/post/create",
@@ -44,10 +41,16 @@ const routes = [
         name: "post-create-confirm",
         component: PostCreateConfirm
     },
+
     {
-        path: "/post/update",
+        path: "/post/update/:id?",
         name: "post-update",
         component: PostUpdate
+    },
+    {
+        path: "/post/updateConfirm",
+        name: "post-update-confirm",
+        component: PostUpdateConfirm,
     },
     {
         path: "/post/delete",
@@ -62,10 +65,13 @@ const routes = [
         path: "/download",
         name: "download",
     },
+
+
+
     {
-        path: "/post/update/confirm",
-        name: "post-update-confirm",
-        component: PostUpdateConfirm
+        path: "/user/list",
+        name: "user-list",
+        component: UserList,
     },
     {
         path: "/user/create",
@@ -75,7 +81,7 @@ const routes = [
     {
         path: "/user/create/confirm",
         name: "user-create-confirm",
-        component: UserCreateConfirm
+        component: UserCreateConfirm,
     },
     {
         path: "/user/profile",
@@ -88,6 +94,11 @@ const routes = [
         component: EditProfile,
     },
     {
+        path: "/user/update-confirm",
+        name: "user-update-conifrm",
+        component: UserUpdateConfirm,
+    },
+    {
         path: "/change/password",
         name: "change-password",
         component: ChangePassword,
@@ -96,6 +107,7 @@ const routes = [
         path: "/*",
         redirect: "/post/list",
     },
+
 ];
 
 const router = new VueRouter({

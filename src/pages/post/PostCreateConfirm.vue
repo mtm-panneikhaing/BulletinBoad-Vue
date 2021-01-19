@@ -20,7 +20,11 @@
           <v-btn type="submit" large color="primary" class="post-list-btn mr-4"
             >Create</v-btn
           >
-          <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
+          <v-btn
+            href="javascript:history.back();"
+            large
+            color="warrning"
+            class="post-list-btn mr-4"
             >Cancel</v-btn
           >
         </div>

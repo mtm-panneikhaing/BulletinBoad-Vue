@@ -17,10 +17,33 @@
     </v-card-title>
     <v-form ref="form" @submit.prevent="create">
       <v-card-text>
-        <div class="text-input">
-          <a :to="{ name: 'changePassword' }">Password Change</a>
+        <div class="row">
+          <div class="col">Name</div>
+          <div class="col">{{ userInfo.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col">Email</div>
+          <div class="col">{{ userInfo.email }}</div>
+        </div>
+        <div class="row">
+          <div class="col">Phone</div>
+          <div class="col">{{ userInfo.phone }}</div>
+        </div>
+        <div class="row">
+          <div class="col">Type</div>
+          <div class="col">{{ userInfo.type }}</div>
+        </div>
+        <div class="row">
+          <div class="col">Date Of Birth</div>
+          <div class="col">{{ userInfo.dob }}</div>
+        </div>
+        <div class="row">
+          <div class="col">Address</div>
+          <div class="col">{{ userInfo.address }}</div>
         </div>
       </v-card-text>
     </v-form>
   </v-card>
 </template>
+<script src="../../services/pages/user/user-profile.js">
+</script>

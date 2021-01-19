@@ -5,8 +5,7 @@
     </v-card-title>
     <v-form ref="form" v-model="valid" @submit.prevent="create">
       <v-card-text>
-        <!-- <div class="title-error">{{ error }}</div>
-        <div class="login-error">{{ error }}</div> -->
+        <div class="title-error">{{ error }}</div>
         <div class="text-input">
           <v-text-field
             v-model="title"
@@ -36,7 +35,7 @@
             >Create</v-btn
           >
           <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
-            >Cancel</v-btn
+            >Clear</v-btn
           >
         </div>
       </v-card-actions>
@@ -45,3 +44,5 @@
 </template>
 <script src="../../services/post/post-create.js">
 </script>
+<style scoped src="../../assets/css/pages/post/post-create-confirmation.css">
+</style>

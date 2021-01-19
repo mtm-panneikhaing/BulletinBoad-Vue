@@ -29,7 +29,7 @@ export default {
                     value: "operation",
                 },
             ],
-            postList: [],
+            //postList: [],
             showList: [],
             update: [],
             postDetail: [],
@@ -53,8 +53,8 @@ export default {
         this.$axios
             .get("/post/list")
             .then((response) => {
-                this.postList = response.data;
-                this.showList = this.postList;
+                this.$store.commit('setPostList', response.data);
+                this.showList = this.$store.state.postList;
             })
             .catch((err) => {
                 console.log(err);
@@ -67,7 +67,8 @@ export default {
          * @returns void
          */
         filterPost() {
-            this.showList = this.postList.filter((post) => {
+            //this.showList = this.postList.filter((post) => {
+            this.showList = this.$store.state.postList.filter((post) => {
                 return (
                     post.title.includes(this.search) ||
                     post.description.includes(this.search)
@@ -87,19 +88,6 @@ export default {
                         console.log(error);
                     })
             }
-        },
-        updatePost(id) {
-            this.$axios.get('/post/update' + id)
-                .then((response) => {
-                    this.error = ""
-                    this.$store.state.post.title = response.data.title;
-                    this.$store.state.post.description = response.data.description;
-                    this.$store.state.post.id = response.data.id;
-                    this.$router.push({ name: "post-update" });
-                })
-                .catch(error => {
-                    console.log("Update post" + error);
-                })
         },
         download() {
             this.$axios.get('/download')

@@ -1,52 +1,35 @@
-import { mapGetters } from "vuex";
 export default {
-  data: () => {
+  data() {
     return {
-      valid: true,
-      title: "",
-      description: " ",
+      routeID: this.$route.params.id,
+      postInfo: this.$store.state.postList,
       error: "",
-
-
-      // //  validation rules for post title.
-      // titleRules: [value => !!value || "The title field is required."],
-
-      // // validation rules for description.
-      // descriptionRules: [value => !!value || "The title field is required."]
-    }
+    };
   },
   mounted() {
-    this.title = this.$store.state.post.title;
-    this.description = this.$store.state.post.description;
-    this.id = this.$store.state.post.id;
-  },
-  computed: {
-    ...mapGetters(["userId"]),
-
+    if (this.postInfo.length > 1) {
+      const updatePost = this.postInfo.filter((post) => {
+        return (
+          post.id == this.routeID
+        );
+      });
+      this.postInfo = updatePost[0];
+      //this.postInfo.profile = null;
+      console.log(this.postInfo);
+    }
   },
   methods: {
-    /**
-     * This to submig create confirmation form.
-     * @returns void
-     */
-    update() {
-      console.log(this.title, this.description);
+    updatePostConfirm() {
       this.$store
-        .dispatch("update", {
-          title: this.title,
-          description: this.description,
-          id: this.id,
-        })
+        .dispatch("updatePostConfirm", this.postInfo)
         .then(() => {
           this.error = "";
           this.$router.push({ name: "post-update-confirm" });
-          console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
+          this.error = err.response.data.errors;
           console.log(err);
         });
     },
-
   }
-}
+};

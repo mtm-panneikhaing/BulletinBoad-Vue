@@ -40,14 +40,13 @@ export default {
           value: "operation",
         },
       ],
-      userList: [],
       showList: [],
       search: '',
     };
   },
 
   computed: {
-    ...mapGetters(["isLoggedIn", "userId"]),
+    ...mapGetters(["isLoggedIn"]),
     headers() {
       if (!this.isLoggedIn) {
         return this.headerList.slice(0, this.headerList.length - 1);
@@ -61,8 +60,8 @@ export default {
     this.$axios
       .get("/user/list")
       .then((response) => {
-        this.userList = response.data;
-        this.showList = this.userList;
+        this.$store.commit('setUserList', response.data);
+        this.showList = this.$store.state.userList;
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +69,7 @@ export default {
   },
   methods: {
     filterUser() {
-      this.showList = this.userList.filter((user) => {
+      this.showList = this.$store.state.userList.filter((user) => {
         return (
           user.name.includes(this.search) ||
           user.email.includes(this.search)
@@ -89,6 +88,6 @@ export default {
             console.log(error);
           })
       }
-    }
+    },
   },
 };

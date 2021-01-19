@@ -1,17 +1,17 @@
 <template>
   <v-card class="mx-auto" max-width="344">
-    <v-card-title class="create-post-title">
-      <span class="post-title font-weight-light">Update Confirm Post</span>
+    <v-card-title class="create-user-title">
+      <span class="user-title font-weight-light">User Update Confirm</span>
     </v-card-title>
-    <v-form ref="form" @submit.prevent="updatePost(postList.id)">
+    <v-form ref="form" @submit.prevent="updateUser()">
       <v-card-text>
         <div>
-          <v-label class="label-title">Title:</v-label>
-          <v-label>{{ postList.title }}</v-label>
+          <v-label class="label-title">Name:</v-label>
+          <v-label>{{ userList.name }}</v-label>
         </div>
         <div>
           <v-label class="label-title">Description:</v-label>
-          <v-label>{{ postList.description }}</v-label>
+          <v-label></v-label>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -32,7 +32,5 @@
     </v-form>
   </v-card>
 </template>
-<script src="../../services/post/post-update-confirm.js">
+<script src="../../services/pages/user/user-update-confirm.js">
 </script>
-<style scoped src="../../assets/css/pages/post/post-create-confirmation.css">
-</style>

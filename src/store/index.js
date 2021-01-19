@@ -9,21 +9,31 @@ axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 export default new Vuex.Store({
     state: {
+        userName: "",
+        userId: "",
         user: null,
         post: null,
+        postList: [],
+        userList: [],
     },
     mutations: {
+        /**
+         *
+         * @param {*} state
+         * @param {*} postData
+         */
         setUserData(state, userData) {
             state.user = userData;
         },
-        /**
-         * 
-         * @param {*} state 
-         * @param {*} postData 
-         */
         setPostData(state, postData) {
             state.post = postData;
-        }
+        },
+        setPostList(state, data) {
+            state.postList = data;
+        },
+        setUserList(state, data) {
+            state.userList = data;
+        },
     },
     actions: {
         login({ commit }, credentials) {
@@ -57,21 +67,26 @@ export default new Vuex.Store({
                 commit("setPostData", data);
             });
         },
-        update({ commit }, credentials) {
-            return axios.post("/post/update/confirm", credentials).then(({ data }) => {
-                commit("setPostData", data);
-            });
-        },
         changePassword({ commit }, credentials) {
             return axios.post("/changePassword", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
         },
-        updatePost({ commit }, context) {
-            return axios.post('/post/update', context)
+        updatePostConfirm({ commit }, credentials) {
+            return axios.post("/post/updateConfirm", credentials).then(({ data }) => {
+                commit("setPostList", data);
+            });
+        },
+        updatePost({ commit }, credentials) {
+            return axios.post('/post/update', credentials)
                 .then(({ data }) => {
                     commit("setPostData", data);
                 })
+        },
+        editProfileConfirm({ commit }, credentials) {
+            return axios.post("/user/updateConfirm", credentials).then(({ data }) => {
+                commit("setUserList", data);
+            });
         },
     },
     getters: {
@@ -82,16 +97,11 @@ export default new Vuex.Store({
             }
             return -1;
         },
-        userId: (state) => {
-            if (state.user && state.user.success.user_id) {
-                return state.user.success.user_id;
-            }
-        },
-        userName: (state) => {
-            if (state.user && state.user.success.name) {
-                return state.user.success.name;
-            }
-        },
+        // userId: (state) => {
+        //     if (state.user && state.user.success.user_id) {
+        //         return state.user.success.user_id;
+        //     }
+        // },
         postTitle: (state) => {
             if (state.post && state.post.title) {
                 return state.post.title;
@@ -102,11 +112,11 @@ export default new Vuex.Store({
                 return state.post.description;
             }
         },
-        postUpdateTitle: (state) => {
-            if (state.post && state.post.title) {
-                return state.post.title;
-            }
-        },
+        // postUpdateTitle: (state) => {
+        //     if (state.post && state.post.title) {
+        //         return state.post.title;
+        //     }
+        // },
         registerName: (state) => {
             if (state.user && state.user.name) {
                 return state.user.name;
@@ -147,6 +157,17 @@ export default new Vuex.Store({
                 return state.user.profile;
             }
         },
+        postList: (state) => {
+            if (state.postList) {
+                return state.postList;
+            }
+        },
+        userList: (state) => {
+            if (state.userList) {
+                return state.userList;
+            }
+        },
+
 
     },
     plugins: [createPersistedState()],

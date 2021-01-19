@@ -41,7 +41,7 @@
         <template v-slot:[`item.title`]="{ item }">
           <a
             v-if="item.title"
-            v-on:click="show(item.id, item.title, item.description)"
+            @click="show(item.id, item.title, item.description)"
             >{{ item.title }}</a
           >
         </template>
@@ -51,7 +51,12 @@
               <v-btn
                 color="primary"
                 class="post-list-btn"
-                @click="updatePost(item.id)"
+                @click="
+                  $router.push({
+                    name: 'post-update',
+                    params: { id: item.id },
+                  })
+                "
                 >Edit</v-btn
               >
             </div>

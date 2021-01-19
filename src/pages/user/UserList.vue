@@ -34,9 +34,6 @@
         <template v-slot:[`item.operation`]="{ item }">
           <v-row>
             <div class="operation-btn">
-              <v-btn color="primary" class="user-list-btn">Edit</v-btn>
-            </div>
-            <div class="operation-btn">
               <v-btn
                 color="error"
                 class="user-list-btn"
