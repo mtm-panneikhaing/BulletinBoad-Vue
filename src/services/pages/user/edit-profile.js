@@ -23,7 +23,7 @@ export default {
         .dispatch("editProfileConfirm", this.userInfo)
         .then(() => {
           this.error = "";
-          this.$router.push({ name: "user-update-conifrm" });
+          this.$router.push({ name: "user-update-confirm" });
           console.log("====================");
           console.log(this.userInfo);
         })

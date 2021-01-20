@@ -10,17 +10,16 @@ export default {
      */
     updateUser() {
       this.$store
-        .dispatch("updatePost", {
-          id: this.$route.params.id,
-          ...this.$store.state.postList
+        .dispatch("updateUser", {
+          id: 1,
+          ...this.$store.state.userList
         })
         .then(() => {
           this.error = "";
-          this.$router.push({ name: "post-list" });
+          this.$router.push({ name: "user-list" });
           console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
           console.log(err);
         });
     }

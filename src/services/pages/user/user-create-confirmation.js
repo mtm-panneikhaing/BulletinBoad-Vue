@@ -28,7 +28,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["registerName", "registerEmail", "registerPassword", "registerPhone", "registerDob", "registerType", "registerProfile", "registerAddress", "userId"]),
+    ...mapGetters(["userProfile", "registerName", "registerEmail", "registerPassword", "registerPhone", "registerDob", "registerType", "registerProfile", "registerAddress", "userId"]),
   },
   methods: {
     /**

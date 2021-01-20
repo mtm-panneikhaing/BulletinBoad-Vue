@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="col">Type</div>
-          <div class="col">{{ userInfo.type }}</div>
+          <div class="col">{{ userInfo.type == 0 ? "Admin" : "User" }}</div>
         </div>
         <div class="row">
           <div class="col">Date Of Birth</div>

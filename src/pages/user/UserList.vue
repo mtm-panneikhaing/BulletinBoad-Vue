@@ -28,7 +28,83 @@
     <v-container>
       <v-data-table :headers="headers" :items="showList">
         <template v-slot:[`item.name`]="{ item }">
-          <a v-if="item.name">{{ item.name }}</a>
+          <v-dialog
+            transition="dialog-top-transition"
+            max-width="600px"
+            min-height="400px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <a
+                v-if="item.name"
+                :key="item.id"
+                v-bind="attrs"
+                v-on="on"
+                @click="showUserDetail(item.id)"
+                >{{ item.name }}</a
+              >
+            </template>
+            <template v-slot:default="dialog">
+              <v-card>
+                <v-toolbar color="primary" dark>User Detail</v-toolbar>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Name:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.name }}</span>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Email:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.email }}</span>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Type:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.type ==0? "Admin":"User" }}</span>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Phone:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.phone }}</span>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Date Of Birth:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.dob }}</span>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <label class="font-bold">Address:</label>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <span>{{ userDetail.address }}</span>
+                    </v-col>
+                  </v-row>
+                </v-container>
+                <!-- card action -->
+                <v-card-actions class="justify-end">
+                  <v-btn class="btn btn-secondary" @click="dialog.value = false"
+                    >Close</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
         </template>
 
         <template v-slot:[`item.operation`]="{ item }">

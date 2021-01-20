@@ -2,51 +2,55 @@ export default {
 
   data: () => {
     return {
-      valid: true,
       error: "",
-      name: "",
-      email: "",
-      password: "",
-      password_confirm: "",
-      phone: "",
-      dob: "",
-      address: "",
-      profile: "",
-      type: null,
+      selectedType: null,
+      previewProfile: "",
       options: [
-        { value: null, text: 'Please select an option' },
-        { value: '0', text: 'Admin' },
-        { value: '1', text: 'User' }
-      ]
+        { value: '1', text: 'User' },
+        { value: '0', text: 'Admin' }
+      ],
+      userInfo: {
+        name: "",
+        email: "",
+        password: "",
+        password_confirm: "",
+        phone: "",
+        dob: "",
+        address: "",
+        profile: "",
+      }
 
     }
   },
   methods: {
+    setSelected(value) {
+      this.userInfo.type = value;
+    },
+    imageChanged(e) {
+      /** Preview Image */
+      this.previewProfile = URL.createObjectURL(e.target.files[0]);
+      this.$store.state.userProfile = URL.createObjectURL(e.target.files[0]);
+      /** Even.Target.Result */
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+      fileReader.onload = (e) => {
+        this.userInfo.profile = e.target.result;
+      }
+    },
     /**
      * This to submig create confirmation form.
      * @returns void
      */
     createUser() {
       this.$store
-        .dispatch("createUser", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          password_confirm: this.password_confirm,
-          phone: this.phone,
-          dob: this.dob,
-          type: this.type,
-          address: this.address,
-          profile: this.profile,
-
-        })
+        .dispatch("createUser", this.userInfo)
         .then(() => {
           this.error = "";
           this.$router.push({ name: "user-create-confirm" });
           console.log("create router successul ");
         })
         .catch(err => {
-          this.error = err.response.data.errors;
+          this.error = err.response.errors;
           console.log(err);
         });
     }

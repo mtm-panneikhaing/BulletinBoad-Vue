@@ -1,16 +1,9 @@
 export default {
   data: () => {
     return {
-      valid: true,
       title: "",
       description: " ",
       error: "",
-
-      //  validation rules for post title.
-      titleRules: [value => !!value || "The title field is required."],
-
-      // validation rules for description.
-      descriptionRules: [value => !!value || "The title field is required."]
     }
   },
   methods: {
@@ -26,13 +19,16 @@ export default {
         })
         .then(() => {
           this.error = "";
-          this.$router.push({ name: "post-create-confirm", params: { title: this.title } });
+          this.$router.push({ name: "post-create-confirm" });
           console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
+          this.error = err.response.data.errors;
           console.log(err);
         });
+    },
+    clear() {
+      this.error = " ";
     }
   }
 };

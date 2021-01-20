@@ -40,6 +40,7 @@ export default {
           value: "operation",
         },
       ],
+      userDetail: [],
       showList: [],
       search: '',
     };
@@ -68,6 +69,13 @@ export default {
       });
   },
   methods: {
+    showUserDetail(id) {
+      const userDetail = this.showList.filter((user) => {
+        return (user.id == id);
+      });
+      this.userDetail = userDetail[0];
+      console.log(this.userDetail);
+    },
     filterUser() {
       this.showList = this.$store.state.userList.filter((user) => {
         return (

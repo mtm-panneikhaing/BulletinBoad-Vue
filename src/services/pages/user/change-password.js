@@ -1,6 +1,13 @@
 export default {
-  data: () => {
-
+  data() {
+    return {
+      password: {
+        userId: this.$store.state.userId,
+        old_password: "",
+        new_password: "",
+        con_new_password: "",
+      }
+    }
   },
   methods: {
     /**
@@ -8,19 +15,13 @@ export default {
      * @returns void
      */
     changePassword() {
-      this.$store
-        .dispatch("changePassword", {
-          old_password: this.old_password,
-          new_password: this.new_password,
-          con_new_password: this.con_new_password,
-        })
+      this.$axios.post("/changePassword", this.password)
         .then(() => {
           this.error = "";
-          this.$router.push({ name: "edit-profile" });
+          this.$router.push({ name: "user-list" });
           console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
           console.log(err);
         });
     }

@@ -15,6 +15,7 @@ export default new Vuex.Store({
         post: null,
         postList: [],
         userList: [],
+        userProfile: "",
     },
     mutations: {
         /**
@@ -67,26 +68,28 @@ export default new Vuex.Store({
                 commit("setPostData", data);
             });
         },
-        changePassword({ commit }, credentials) {
-            return axios.post("/changePassword", credentials).then(({ data }) => {
-                commit("setPostData", data);
-            });
-        },
         updatePostConfirm({ commit }, credentials) {
             return axios.post("/post/updateConfirm", credentials).then(({ data }) => {
                 commit("setPostList", data);
             });
         },
         updatePost({ commit }, credentials) {
-            return axios.post('/post/update', credentials)
+            return axios.post('/post/update', { userId: this.state.userId, ...credentials })
                 .then(({ data }) => {
                     commit("setPostData", data);
-                })
+                });
         },
         editProfileConfirm({ commit }, credentials) {
-            return axios.post("/user/updateConfirm", credentials).then(({ data }) => {
-                commit("setUserList", data);
-            });
+            return axios.post("/user/updateConfirm", credentials)
+                .then(({ data }) => {
+                    commit("setUserList", data);
+                });
+        },
+        updateUser({ commit }, credentials) {
+            return axios.post('/user/update', credentials)
+                .then(({ data }) => {
+                    commit("setUserData", data);
+                });
         },
     },
     getters: {
@@ -97,11 +100,11 @@ export default new Vuex.Store({
             }
             return -1;
         },
-        // userId: (state) => {
-        //     if (state.user && state.user.success.user_id) {
-        //         return state.user.success.user_id;
-        //     }
-        // },
+        userId: (state) => {
+            if (state.user && state.user.success.user_id) {
+                return state.user.success.user_id;
+            }
+        },
         postTitle: (state) => {
             if (state.post && state.post.title) {
                 return state.post.title;
@@ -110,6 +113,16 @@ export default new Vuex.Store({
         postDescription: (state) => {
             if (state.post && state.post.description) {
                 return state.post.description;
+            }
+        },
+        userProfile: (state) => {
+            if (state.userProfile) {
+                return state.userProfile;
+            }
+        },
+        userInfo: (state) => {
+            if (state.userInfo) {
+                return state.userInfo;
             }
         },
         // postUpdateTitle: (state) => {

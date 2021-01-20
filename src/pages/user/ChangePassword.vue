@@ -7,21 +7,21 @@
       <v-card-text>
         <div class="text-input">
           <v-text-field
-            v-model="old_password"
+            v-model="password.old_password"
             type="password"
             label="Old Password"
             hide-details="auto"
           >
           </v-text-field>
           <v-text-field
-            v-model="new_password"
+            v-model="password.new_password"
             type="password"
             label="New Password"
             hide-details="auto"
           >
           </v-text-field>
           <v-text-field
-            v-model="con_new_password"
+            v-model="password.con_new_password"
             type="password"
             label="Confirm New Password"
             hide-details="auto"

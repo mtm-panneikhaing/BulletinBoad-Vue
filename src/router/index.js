@@ -65,9 +65,6 @@ const routes = [
         path: "/download",
         name: "download",
     },
-
-
-
     {
         path: "/user/list",
         name: "user-list",
@@ -95,7 +92,7 @@ const routes = [
     },
     {
         path: "/user/update-confirm",
-        name: "user-update-conifrm",
+        name: "user-update-confirm",
         component: UserUpdateConfirm,
     },
     {

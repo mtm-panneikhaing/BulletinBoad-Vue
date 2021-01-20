@@ -22,14 +22,13 @@ export default {
                 },
                 {
                     text: "Posted User",
-                    value: "create_user_id",
+                    value: "user.name",
                 },
                 {
                     text: "Operation",
                     value: "operation",
                 },
             ],
-            //postList: [],
             showList: [],
             update: [],
             postDetail: [],
@@ -59,15 +58,20 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
-        this.show();
     },
     methods: {
         /**
          * This is to filter posts of datatable.
          * @returns void
          */
+        showPostDetail(id) {
+            const postDetail = this.showList.filter((post) => {
+                return (post.id == id);
+            });
+            this.postDetail = postDetail[0];
+            console.log(this.postDetail);
+        },
         filterPost() {
-            //this.showList = this.postList.filter((post) => {
             this.showList = this.$store.state.postList.filter((post) => {
                 return (
                     post.title.includes(this.search) ||
@@ -81,8 +85,6 @@ export default {
                 this.$axios.delete('/post/delete' + id)
                     .then(() => {
                         this.error = "";
-                        //this.$store.state.post.splice(id, index);
-                        //this.$router.push({ name: "post-list" });
                     })
                     .catch(error => {
                         console.log(error);
@@ -94,13 +96,6 @@ export default {
                 .then(() => { console.log("download successful"); });
 
         },
-        show() {
-            this.$modal.show("hello");
-        },
-        hide() {
-            this.$modal.hide("hello");
-        }
-
 
     }
 

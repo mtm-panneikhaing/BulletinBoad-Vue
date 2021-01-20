@@ -11,7 +11,7 @@ export default {
     updatePost() {
       this.$store
         .dispatch("updatePost", {
-          id: this.$route.params.id,
+          id: 1,
           ...this.$store.state.postList
         })
         .then(() => {
@@ -20,7 +20,7 @@ export default {
           console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
+          this.error = err.response.data.errors;
           console.log(err);
         });
     }

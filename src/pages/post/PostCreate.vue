@@ -3,9 +3,8 @@
     <v-card-title class="create-post-title">
       <span class="title font-weight-light">Create Post</span>
     </v-card-title>
-    <v-form ref="form" v-model="valid" @submit.prevent="create">
+    <v-form ref="form" @submit.prevent="create">
       <v-card-text>
-        <div class="title-error">{{ error }}</div>
         <div class="text-input">
           <v-text-field
             v-model="title"
@@ -13,6 +12,9 @@
             label="Title"
             hide-details="auto"
           ></v-text-field>
+          <span v-if="error && error.title" class="error-message">{{
+            error.title[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-text-field
@@ -21,20 +23,23 @@
             label="Description"
             hide-details="auto"
           ></v-text-field>
+          <span v-if="error && error.description" class="error-message">{{
+            error.description[0]
+          }}</span>
         </div>
       </v-card-text>
       <v-card-actions>
         <div class="action">
           <v-spacer></v-spacer>
-          <v-btn
-            type="submit"
-            large
-            color="primary"
-            :disabled="!valid"
-            class="post-list-btn mr-4"
+          <v-btn type="submit" large color="primary" class="post-list-btn mr-4"
             >Create</v-btn
           >
-          <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
+          <v-btn
+            type="reset"
+            v-on:click="clear()"
+            large
+            color="warrning"
+            class="post-list-btn mr-4"
             >Clear</v-btn
           >
         </div>

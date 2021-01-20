@@ -8,7 +8,7 @@ import VueSelect from 'vue-next-select';
       <v-card-text>
         <div class="text-input">
           <v-text-field
-            v-model="name"
+            v-model="userInfo.name"
             type="text"
             label="Name"
             hide-details="auto"
@@ -17,7 +17,7 @@ import VueSelect from 'vue-next-select';
         </div>
         <div class="text-input">
           <v-text-field
-            v-model="email"
+            v-model="userInfo.email"
             type="email"
             label="Email Address"
             hide-details="auto"
@@ -26,7 +26,7 @@ import VueSelect from 'vue-next-select';
         </div>
         <div class="text-input">
           <v-text-field
-            v-model="password"
+            v-model="userInfo.password"
             type="password"
             label="Password"
             hide-details="auto"
@@ -35,7 +35,7 @@ import VueSelect from 'vue-next-select';
         </div>
         <div class="text-input">
           <v-text-field
-            v-model="password_confirm"
+            v-model="userInfo.password_confirm"
             type="password"
             label="Confirm Password"
             hide-details="auto"
@@ -43,12 +43,16 @@ import VueSelect from 'vue-next-select';
           </v-text-field>
         </div>
         <div class="text-input">
-          <v-select v-model="type" :items="options" hide-details="auto">
-          </v-select>
+          <v-select
+            label="Type"
+            :value="selectedType"
+            :items="options"
+            @input="setSelected"
+          ></v-select>
         </div>
         <div class="text-input">
           <v-text-field
-            v-model="phone"
+            v-model="userInfo.phone"
             type="number"
             label="Phone"
             hide-details="auto"
@@ -56,21 +60,31 @@ import VueSelect from 'vue-next-select';
           </v-text-field>
         </div>
         <div class="text-input">
-          <v-text-field v-model="dob" type="date" hide-details="auto">
+          <v-text-field v-model="userInfo.dob" type="date" hide-details="auto">
           </v-text-field>
         </div>
         <div class="text-input">
           <v-text-field
-            v-model="address"
+            v-model="userInfo.address"
             type="text"
             label="Address"
             hide-details="auto"
           >
           </v-text-field>
         </div>
-        <div class="text-input">
-          <v-text-field v-model="profile" type="file" hide-details="auto">
-          </v-text-field>
+        <div class="img-wrap">
+          <div style="flex: 1; margin-left: 5px">
+            <input
+              hide-details="auto"
+              type="file"
+              @change="imageChanged"
+              accept="image/*"
+            />
+
+            <div class="img-container">
+              <img v-if="previewProfile" :src="previewProfile" id="profile" />
+            </div>
+          </div>
         </div>
       </v-card-text>
       <v-card-actions class="mt-4">
@@ -80,7 +94,7 @@ import VueSelect from 'vue-next-select';
             >Create</v-btn
           >
           <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
-            >Cancel</v-btn
+            >Clear</v-btn
           >
         </div>
       </v-card-actions>
@@ -89,3 +103,5 @@ import VueSelect from 'vue-next-select';
 </template>
 <script src="../../services/pages/user/user-create.js">
 </script>
+<style scoped src="../../assets/css/pages/user/user-create.css">
+</style>
