@@ -14,7 +14,6 @@ export default {
         );
       });
       this.postInfo = updatePost[0];
-      //this.postInfo.profile = null;
       console.log(this.postInfo);
     }
   },
@@ -31,5 +30,8 @@ export default {
           console.log(err);
         });
     },
+    clear() {
+      this.error = " ";
+    }
   }
 };

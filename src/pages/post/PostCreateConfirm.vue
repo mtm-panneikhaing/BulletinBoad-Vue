@@ -3,7 +3,7 @@
     <v-card-title class="create-post-title">
       <span class="post-title font-weight-light">Confirm Post</span>
     </v-card-title>
-    <v-form ref="form" @submit.prevent="createPost">
+    <v-form ref="form" @submit.prevent="createPostConfirm">
       <v-card-text>
         <div class="post-input">
           <v-label class="label-title">Title:</v-label>

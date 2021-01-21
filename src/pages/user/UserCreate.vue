@@ -14,6 +14,9 @@ import VueSelect from 'vue-next-select';
             hide-details="auto"
           >
           </v-text-field>
+          <span v-if="error && error.name" class="error-message">{{
+            error.name[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-text-field
@@ -23,6 +26,9 @@ import VueSelect from 'vue-next-select';
             hide-details="auto"
           >
           </v-text-field>
+          <span v-if="error && error.email" class="error-message">{{
+            error.email[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-text-field
@@ -32,6 +38,9 @@ import VueSelect from 'vue-next-select';
             hide-details="auto"
           >
           </v-text-field>
+          <span v-if="error && error.password" class="error-message">{{
+            error.password[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-text-field
@@ -41,12 +50,15 @@ import VueSelect from 'vue-next-select';
             hide-details="auto"
           >
           </v-text-field>
+          <span v-if="error && error.password_confirm" class="error-message">{{
+            error.password_confirm[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-select
             label="Type"
             :value="selectedType"
-            :items="options"
+            :items="types"
             @input="setSelected"
           ></v-select>
         </div>
@@ -80,7 +92,10 @@ import VueSelect from 'vue-next-select';
               @change="imageChanged"
               accept="image/*"
             />
-
+            <br />
+            <span v-if="error && error.profile" class="error-message">{{
+              error.profile[0]
+            }}</span>
             <div class="img-container">
               <img v-if="previewProfile" :src="previewProfile" id="profile" />
             </div>
@@ -93,7 +108,12 @@ import VueSelect from 'vue-next-select';
           <v-btn type="submit" large color="primary" class="post-list-btn mr-4"
             >Create</v-btn
           >
-          <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
+          <v-btn
+            type="reset"
+            v-on:click="clear()"
+            large
+            color="warrning"
+            class="post-list-btn mr-4"
             >Clear</v-btn
           >
         </div>

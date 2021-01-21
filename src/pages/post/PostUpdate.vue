@@ -13,6 +13,9 @@
             :value="postInfo.title"
             hide-details="auto"
           ></v-text-field>
+          <span v-if="error && error.title" class="error-message">{{
+            error.title[0]
+          }}</span>
         </div>
         <div class="text-input">
           <v-text-field
@@ -22,6 +25,9 @@
             :value="postInfo.description"
             hide-details="auto"
           ></v-text-field>
+          <span v-if="error && error.description" class="error-message">{{
+            error.description[0]
+          }}</span>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -30,7 +36,12 @@
           <v-btn type="submit" large color="primary" class="post-list-btn mr-4"
             >Update</v-btn
           >
-          <v-btn type="reset" large color="warrning" class="post-list-btn mr-4"
+          <v-btn
+            type="reset"
+            v-on:click="clear()"
+            large
+            color="warrning"
+            class="post-list-btn mr-4"
             >Cancel</v-btn
           >
         </div>

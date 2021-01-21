@@ -1,4 +1,5 @@
 import { mapGetters } from "vuex";
+//import XLSX from "xlsx";
 export default {
     data() {
         return {
@@ -30,7 +31,6 @@ export default {
                 },
             ],
             showList: [],
-            update: [],
             postDetail: [],
             search: '',
             title: '',
@@ -80,9 +80,9 @@ export default {
             });
         },
         deletePost(id) {
-            if (confirm("Do you really want to delete?" + id)) {
+            if (confirm("Do you really want to delete?")) {
                 console.log(id);
-                this.$axios.delete('/post/delete' + id)
+                this.$store.dispatch("deletePost", id)
                     .then(() => {
                         this.error = "";
                     })
@@ -91,12 +91,12 @@ export default {
                     })
             }
         },
-        download() {
-            this.$axios.get('/download')
-                .then(() => { console.log("download successful"); });
-
-        },
-
+        // download() {
+        //     const data = XLSX.utils.json_to_sheet(this.showList)
+        //     const wb = XLSX.utils.book_new()
+        //     XLSX.utils.book_append_sheet(wb, data, 'Post List')
+        //     XLSX.writeFile(wb, 'demo.xlsx')
+        // },
     }
 
 };

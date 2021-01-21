@@ -5,7 +5,7 @@ export default {
       error: "",
       selectedType: null,
       previewProfile: "",
-      options: [
+      types: [
         { value: '1', text: 'User' },
         { value: '0', text: 'Admin' }
       ],
@@ -27,10 +27,9 @@ export default {
       this.userInfo.type = value;
     },
     imageChanged(e) {
-      /** Preview Image */
+
       this.previewProfile = URL.createObjectURL(e.target.files[0]);
       this.$store.state.userProfile = URL.createObjectURL(e.target.files[0]);
-      /** Even.Target.Result */
       let fileReader = new FileReader();
       fileReader.readAsDataURL(e.target.files[0]);
       fileReader.onload = (e) => {
@@ -50,9 +49,12 @@ export default {
           console.log("create router successul ");
         })
         .catch(err => {
-          this.error = err.response.errors;
+          this.error = err.response.data.errors;
           console.log(err);
         });
+    },
+    clear() {
+      this.error = " ";
     }
   }
 };

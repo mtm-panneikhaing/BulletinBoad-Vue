@@ -87,7 +87,8 @@ export default {
     deleteUser(id) {
       if (confirm("Do you really want to delete? " + id)) {
         console.log(id);
-        this.$axios.delete('/user/delete' + id)
+        //this.$axios.delete('/user/delete' + id)
+        this.$store.dispatch("deleteUser", id)
           .then(() => {
             this.error = " ",
               console.log("delete successful");

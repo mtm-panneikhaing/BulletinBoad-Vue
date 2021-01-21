@@ -15,6 +15,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$store.state.post);
     this.title = this.$store.state.post.title;
     this.description = this.$store.state.post.description;
 
@@ -27,20 +28,18 @@ export default {
      * This to submig create confirmation form.
      * @returns void
      */
-    createPost() {
-      console.log(this.title, this.description);
+    createPostConfirm() {
       this.$store
-        .dispatch("createPost", {
-          title: this.title,
-          description: this.description,
-        })
+        .dispatch("createPostConfirm", this.$store.state.post)
         .then(() => {
           this.error = "";
           this.$router.push({ name: "post-list" });
           console.log("router successul");
+          //console.log(response.data);
+          console.log(this.$store.state.userId);
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
+          this.error = err;
           console.log(err);
         });
     }

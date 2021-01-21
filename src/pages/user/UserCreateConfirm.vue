@@ -30,10 +30,10 @@
           <v-label class="label-title">Type:</v-label>
           <v-label>{{ registerType == 0 ? "Admin" : "User" }}</v-label>
         </div>
-        <div class="user-input">
+        <!-- <div class="user-input">
           <v-label class="label-title">Profile:</v-label>
           <v-label>{{ userProfile }}</v-label>
-        </div>
+        </div> -->
         <div class="user-input">
           <v-label class="label-title">Address:</v-label>
           <v-label>{{ registerAddress }}</v-label>

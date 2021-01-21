@@ -79,7 +79,7 @@
                       <label class="font-bold">Posted User:</label>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                      <span>{{ postDetail.create_user_id }}</span>
+                      <span>{{ postDetail.user.name }}</span>
                     </v-col>
                   </v-row>
                 </v-container>

@@ -35,6 +35,14 @@ export default new Vuex.Store({
         setUserList(state, data) {
             state.userList = data;
         },
+        setDeletePostList(state, id) {
+            const index = state.postList.findIndex(post => post.id == id);
+            state.postList.splice(index, 1);
+        },
+        setDeleteUserList(state, id) {
+            const index = state.userList.findIndex(user => user.id == id);
+            state.userList.splice(index, 1);
+        },
     },
     actions: {
         login({ commit }, credentials) {
@@ -58,13 +66,15 @@ export default new Vuex.Store({
                 commit("setUserData", data);
             });
         },
-        create({ commit }, credentials) {
+        createPost({ commit }, credentials) {
+            console.log(credentials);
             return axios.post("/post/create", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
         },
-        createPost({ commit }, credentials) {
-            return axios.post("/post/create/confirm", credentials).then(({ data }) => {
+        createPostConfirm({ commit }, credentials) {
+            console.log(credentials);
+            return axios.post("/post/createConfirm", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
         },
@@ -90,6 +100,18 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     commit("setUserData", data);
                 });
+        },
+        deletePost({ commit }, id) {
+            return axios.delete("/post/delete/" + id)
+                .then(() => {
+                    commit("setDeletePostList", id);
+                })
+        },
+        deleteUser({ commit }, id) {
+            return axios.delete("/user/delete/" + id)
+                .then(() => {
+                    commit("setDeleteUserList", id);
+                })
         },
     },
     getters: {

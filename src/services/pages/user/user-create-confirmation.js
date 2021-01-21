@@ -54,8 +54,8 @@ export default {
           console.log("router successul");
         })
         .catch(err => {
-          this.error = err.response.data.errors.message;
-          console.log(err);
+          this.error = err.response.data.errors;
+          console.log(this.error);
         });
     }
   }

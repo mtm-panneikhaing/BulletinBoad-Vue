@@ -8,12 +8,12 @@ export default {
   },
   methods: {
     /**
-     * This to submig create confirmation form.
+     * This to submit create confirmation form.
      * @returns void
      */
     create() {
       this.$store
-        .dispatch("create", {
+        .dispatch("createPost", {
           title: this.title,
           description: this.description
         })
