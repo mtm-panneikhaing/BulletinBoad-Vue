@@ -1,7 +1,7 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["userList"]),
+    ...mapGetters(["userList", "userProfile"]),
   },
   methods: {
     /**
@@ -10,10 +10,7 @@ export default {
      */
     updateUser() {
       this.$store
-        .dispatch("updateUser", {
-          id: 1,
-          ...this.$store.state.userList
-        })
+        .dispatch("updateUser", this.$store.state.userList)
         .then(() => {
           this.error = "";
           this.$router.push({ name: "user-list" });

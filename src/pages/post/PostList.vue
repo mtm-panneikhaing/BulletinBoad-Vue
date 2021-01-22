@@ -22,15 +22,12 @@
             >Create</v-btn
           >
           <v-btn
-            :to="{ name: 'upload' }"
+            :to="{ name: 'post-upload' }"
             class="post-list-btn mr-4"
             color="primary"
             >Upload</v-btn
           >
-          <v-btn
-            v-on:click="download()"
-            class="post-list-btn mr-4"
-            color="primary"
+          <v-btn @click="download()" class="post-list-btn mr-4" color="primary"
             >Download</v-btn
           >
         </v-row>

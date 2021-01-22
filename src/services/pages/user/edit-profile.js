@@ -3,6 +3,12 @@ export default {
     return {
       userInfo: this.$store.state.userList,
       userId: this.$store.state.userId,
+      selectedType: null,
+      previewProfile: "",
+      types: [
+        { value: '1', text: 'User' },
+        { value: '0', text: 'Admin' }
+      ],
       error: "",
     };
   },
@@ -18,6 +24,19 @@ export default {
     }
   },
   methods: {
+    setSelected(value) {
+      this.userInfo.type = value;
+    },
+    imageChanged(e) {
+
+      this.previewProfile = URL.createObjectURL(e.target.files[0]);
+      this.$store.state.userProfile = URL.createObjectURL(e.target.files[0]);
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+      fileReader.onload = (e) => {
+        this.userInfo.profile = e.target.result;
+      }
+    },
     editProfileConfirm() {
       this.$store
         .dispatch("editProfileConfirm", this.userInfo)

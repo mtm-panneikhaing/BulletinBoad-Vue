@@ -50,7 +50,7 @@ export default {
         })
         .catch(err => {
           this.error = err.response.data.errors;
-          console.log(err);
+          console.log(this.error);
         });
     },
     clear() {

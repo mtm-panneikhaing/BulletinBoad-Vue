@@ -48,6 +48,16 @@
                 <v-toolbar color="primary" dark>User Detail</v-toolbar>
                 <v-container>
                   <v-row>
+                    <v-col>
+                      <img
+                        :src="
+                          'http://localhost:8000/images/' + userDetail.profile
+                        "
+                        width="100"
+                        height="100"
+                    /></v-col>
+                  </v-row>
+                  <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <label class="font-bold">Name:</label>
                     </v-col>
@@ -68,7 +78,7 @@
                       <label class="font-bold">Type:</label>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                      <span>{{ userDetail.type ==0? "Admin":"User" }}</span>
+                      <span>{{ userDetail.type == 0 ? "Admin" : "User" }}</span>
                     </v-col>
                   </v-row>
                   <v-row>

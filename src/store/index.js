@@ -16,6 +16,8 @@ export default new Vuex.Store({
         postList: [],
         userList: [],
         userProfile: "",
+        userInfo: [],
+        createUser: [],
     },
     mutations: {
         /**
@@ -34,6 +36,9 @@ export default new Vuex.Store({
         },
         setUserList(state, data) {
             state.userList = data;
+        },
+        setCreateUser(state, data) {
+            state.createUser = data;
         },
         setDeletePostList(state, id) {
             const index = state.postList.findIndex(post => post.id == id);
@@ -56,14 +61,15 @@ export default new Vuex.Store({
             });
         },
         createUser({ commit }, credentials) {
-            console.log(credentials);
+            //console.log(credentials);
             return axios.post("/user/create", credentials).then(({ data }) => {
-                commit("setUserData", data);
+                commit("setCreateUser", data);
             });
         },
         createUserConfirm({ commit }, credentials) {
+            console.log(credentials);
             return axios.post("/user/create/confirm", credentials).then(({ data }) => {
-                commit("setUserData", data);
+                commit("setCreateUser", data);
             });
         },
         createPost({ commit }, credentials) {
@@ -90,6 +96,7 @@ export default new Vuex.Store({
                 });
         },
         editProfileConfirm({ commit }, credentials) {
+            console.log(credentials);
             return axios.post("/user/updateConfirm", credentials)
                 .then(({ data }) => {
                     commit("setUserList", data);
@@ -98,7 +105,7 @@ export default new Vuex.Store({
         updateUser({ commit }, credentials) {
             return axios.post('/user/update', credentials)
                 .then(({ data }) => {
-                    commit("setUserData", data);
+                    commit("setUserInfo", data);
                 });
         },
         deletePost({ commit }, id) {
@@ -117,14 +124,14 @@ export default new Vuex.Store({
     getters: {
         isLoggedIn: (state) => !!state.user,
         userType: (state) => {
-            if (state.user && state.user.success.user_type) {
+            if (state.user && state.user.success.data.user_type) {
                 return state.user.success.user_type;
             }
             return -1;
         },
         userId: (state) => {
-            if (state.user && state.user.success.user_id) {
-                return state.user.success.user_id;
+            if (state.userId) {
+                return state.userId;
             }
         },
         postTitle: (state) => {
@@ -200,6 +207,11 @@ export default new Vuex.Store({
         userList: (state) => {
             if (state.userList) {
                 return state.userList;
+            }
+        },
+        createUser: (state) => {
+            if (state.createUser) {
+                return state.createUser;
             }
         },
 

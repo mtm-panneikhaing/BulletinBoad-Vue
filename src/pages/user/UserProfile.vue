@@ -1,7 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="344">
     <v-card-title class="create-post-title">
-      <!-- <span class="title font-weight-light">Profile</span> -->
       <v-card-actions>
         <div class="action">
           <v-spacer></v-spacer>
@@ -17,7 +16,11 @@
     </v-card-title>
     <v-form ref="form" @submit.prevent="create">
       <v-card-text>
-        <img :src="userInfo.profile_path" width="100" height="100" />
+        <img
+          :src="'http://localhost:8000/images/' + userInfo.profile"
+          width="100"
+          height="100"
+        />
         <div class="row">
           <div class="col">Name</div>
           <div class="col">{{ userInfo.name }}</div>

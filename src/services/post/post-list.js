@@ -1,5 +1,5 @@
 import { mapGetters } from "vuex";
-//import XLSX from "xlsx";
+import XLSX from "xlsx";
 export default {
     data() {
         return {
@@ -91,12 +91,12 @@ export default {
                     })
             }
         },
-        // download() {
-        //     const data = XLSX.utils.json_to_sheet(this.showList)
-        //     const wb = XLSX.utils.book_new()
-        //     XLSX.utils.book_append_sheet(wb, data, 'Post List')
-        //     XLSX.writeFile(wb, 'demo.xlsx')
-        // },
+        download() {
+            const data = XLSX.utils.json_to_sheet(this.showList)
+            const wb = XLSX.utils.book_new()
+            XLSX.utils.book_append_sheet(wb, data, 'Post List')
+            XLSX.writeFile(wb, 'demo.xlsx')
+        },
     }
 
 };

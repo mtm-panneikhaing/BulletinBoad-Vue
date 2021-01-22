@@ -33,7 +33,7 @@ export default {
         },
         {
           text: "Posted User",
-          value: "create_user_id",
+          value: "user.name",
         },
         {
           text: "Operation",

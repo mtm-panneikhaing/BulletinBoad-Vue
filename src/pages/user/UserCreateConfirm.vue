@@ -8,27 +8,27 @@
         <img :src="userProfile" style="width: 100px; height: 100px" />
         <div class="user-input">
           <v-label class="label-title">Name:</v-label>
-          <v-label>{{ registerName }}</v-label>
+          <v-label>{{ createUser.name }}</v-label>
         </div>
         <div class="user-input">
           <v-label class="label-title">Email:</v-label>
-          <v-label>{{ registerEmail }}</v-label>
+          <v-label>{{ createUser.email }}</v-label>
         </div>
         <div class="user-input">
           <v-label class="label-title">Password:</v-label>
-          <v-label>{{ registerPassword }}</v-label>
+          <v-label>{{ createUser.password }}</v-label>
         </div>
         <div class="user-input">
           <v-label class="label-title">Phone:</v-label>
-          <v-label>{{ registerPhone }}</v-label>
+          <v-label>{{ createUser.phone }}</v-label>
         </div>
         <div class="user-input">
           <v-label class="label-title">Date of Birth:</v-label>
-          <v-label>{{ registerDob }}</v-label>
+          <v-label>{{ createUser.dob }}</v-label>
         </div>
         <div class="user-input">
           <v-label class="label-title">Type:</v-label>
-          <v-label>{{ registerType == 0 ? "Admin" : "User" }}</v-label>
+          <v-label>{{ createUser.type == 0 ? "Admin" : "User" }}</v-label>
         </div>
         <!-- <div class="user-input">
           <v-label class="label-title">Profile:</v-label>
@@ -36,7 +36,7 @@
         </div> -->
         <div class="user-input">
           <v-label class="label-title">Address:</v-label>
-          <v-label>{{ registerAddress }}</v-label>
+          <v-label>{{ createUser.address }}</v-label>
         </div>
       </v-card-text>
       <v-card-actions>

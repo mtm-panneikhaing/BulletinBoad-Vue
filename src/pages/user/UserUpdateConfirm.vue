@@ -6,26 +6,29 @@
     <v-form ref="form" @submit.prevent="updateUser()">
       <v-card-text>
         <div>
+          <img :src="userProfile" style="width: 100px; height: 100px" />
+        </div>
+        <div class="user-input mt-4">
           <v-label class="label-title">Name:</v-label>
           <v-label>{{ userList.name }}</v-label>
         </div>
-        <div>
+        <div class="user-input mt-4">
           <v-label class="label-title">Email:</v-label>
           <v-label>{{ userList.email }}</v-label>
         </div>
-        <div>
+        <div class="user-input mt-4">
           <v-label class="label-title">Phone:</v-label>
           <v-label>{{ userList.phone }}</v-label>
         </div>
-        <div>
-          <v-label class="label-title">Type:</v-label>
-          <v-label>{{ userList.type == 0 ? "Admin" : "User" }}</v-label>
-        </div>
-        <div>
+        <div class="user-input mt-4">
           <v-label class="label-title">Date Of Birth:</v-label>
           <v-label>{{ userList.dob }}</v-label>
         </div>
-        <div>
+        <div class="user-input mt-4">
+          <v-label class="label-title mt-4">Type:</v-label>
+          <v-label>{{ userList.type == 0 ? "Admin" : "User" }}</v-label>
+        </div>
+        <div class="user-input mt-4">
           <v-label class="label-title">Address:</v-label>
           <v-label>{{ userList.address }}</v-label>
         </div>

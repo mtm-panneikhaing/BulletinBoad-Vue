@@ -57,8 +57,8 @@ const routes = [
         name: "post-delete",
     },
     {
-        path: "/upload",
-        name: "upload",
+        path: "/post/upload",
+        name: "post-upload",
         component: Upload
     },
     {
