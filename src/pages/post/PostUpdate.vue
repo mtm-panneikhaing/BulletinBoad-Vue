@@ -29,6 +29,15 @@
             error.description[0]
           }}</span>
         </div>
+        <div class="text-input">
+          <v-checkbox
+            :value="postInfo.status"
+            v-model="postInfo.status"
+            :label="`Status: ${postInfo.status == 1 ? 'Active' : 'Inactive'}`"
+            @change="changeStatus"
+          >
+          </v-checkbox>
+        </div>
       </v-card-text>
       <v-card-actions>
         <div class="action">

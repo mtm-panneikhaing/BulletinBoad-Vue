@@ -15,21 +15,26 @@
           <v-btn type="submit" class="post-list-btn mr-4" color="primary"
             >Filter</v-btn
           >
-          <v-btn
-            :to="{ name: 'post-create' }"
-            class="post-list-btn mr-4"
-            color="primary"
-            >Create</v-btn
-          >
-          <v-btn
-            :to="{ name: 'post-upload' }"
-            class="post-list-btn mr-4"
-            color="primary"
-            >Upload</v-btn
-          >
-          <v-btn @click="download()" class="post-list-btn mr-4" color="primary"
-            >Download</v-btn
-          >
+          <template v-if="userId">
+            <v-btn
+              :to="{ name: 'post-create' }"
+              class="post-list-btn mr-4"
+              color="primary"
+              >Create</v-btn
+            >
+            <v-btn
+              :to="{ name: 'post-upload' }"
+              class="post-list-btn mr-4"
+              color="primary"
+              >Upload</v-btn
+            >
+            <v-btn
+              @click="download()"
+              class="post-list-btn mr-4"
+              color="primary"
+              >Download</v-btn
+            >
+          </template>
         </v-row>
       </v-form>
     </v-card-title>

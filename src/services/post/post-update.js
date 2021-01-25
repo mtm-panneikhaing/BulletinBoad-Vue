@@ -14,7 +14,6 @@ export default {
         );
       });
       this.postInfo = updatePost[0];
-      console.log(this.postInfo);
     }
   },
   methods: {
@@ -29,6 +28,13 @@ export default {
           this.error = err.response.data.errors;
           console.log(err);
         });
+    },
+    changeStatus() {
+      if (this.postInfo.status) {
+        this.postInfo.status = 1;
+      } else {
+        this.postInfo.status = 0;
+      }
     },
     clear() {
       this.error = " ";

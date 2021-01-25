@@ -8,10 +8,14 @@
               <span>{{ title }}</span>
             </v-toolbar-title>
             <div class="route-links">
-              <router-link :to="{ name: 'user-list' }" class="route-link ml-2"
+              <router-link
+                v-if="userType == 0 && userId"
+                :to="{ name: 'user-list' }"
+                class="route-link ml-2"
                 >Users</router-link
               >
               <router-link
+                v-if="userId"
                 :to="{ name: 'user-profile' }"
                 class="route-link ml-2"
                 >User</router-link

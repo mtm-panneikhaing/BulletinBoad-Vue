@@ -5,11 +5,13 @@ export default {
     data() {
         return {
             title: constants.APP_TITLE,
+            userId: this.$store.state.userId,
             userName: this.$store.state.userName,
+            userType: this.$store.state.userType,
         }
     },
     computed: {
-        ...mapGetters(["isLoggedIn", "userType"]),
+        ...mapGetters(["isLoggedIn"]),
     },
     methods: {
         /**
@@ -31,7 +33,7 @@ export default {
          * @returns void
          */
         showProfile() {
-            // TODO: do something
+            this.$router.push({ name: 'user-profile' });
         },
     },
 };

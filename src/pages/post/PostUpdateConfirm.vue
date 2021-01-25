@@ -5,13 +5,16 @@
     </v-card-title>
     <v-form ref="form" @submit.prevent="updatePost(postList.id)">
       <v-card-text>
-        <div>
+        <div class="label">
           <v-label class="label-title">Title:</v-label>
           <v-label>{{ postList.title }}</v-label>
         </div>
-        <div>
+        <div class="label">
           <v-label class="label-title">Description:</v-label>
           <v-label>{{ postList.description }}</v-label>
+        </div>
+        <div class="label">
+          <span>{{ postList.status == 1 ? "Active" : "Inactive" }}</span>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -34,5 +37,5 @@
 </template>
 <script src="../../services/post/post-update-confirm.js">
 </script>
-<style scoped src="../../assets/css/pages/post/post-create-confirmation.css">
+<style scoped src="../../assets/css/pages/post/post-update-confirm.css">
 </style>

@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: {
         userName: "",
         userId: "",
+        userType: "",
         user: null,
         post: null,
         postList: [],
@@ -61,25 +62,21 @@ export default new Vuex.Store({
             });
         },
         createUser({ commit }, credentials) {
-            //console.log(credentials);
             return axios.post("/user/create", credentials).then(({ data }) => {
                 commit("setCreateUser", data);
             });
         },
         createUserConfirm({ commit }, credentials) {
-            console.log(credentials);
             return axios.post("/user/create/confirm", credentials).then(({ data }) => {
                 commit("setCreateUser", data);
             });
         },
         createPost({ commit }, credentials) {
-            console.log(credentials);
             return axios.post("/post/create", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
         },
         createPostConfirm({ commit }, credentials) {
-            console.log(credentials);
             return axios.post("/post/createConfirm", credentials).then(({ data }) => {
                 commit("setPostData", data);
             });
@@ -90,13 +87,12 @@ export default new Vuex.Store({
             });
         },
         updatePost({ commit }, credentials) {
-            return axios.post('/post/update', { userId: this.state.userId, ...credentials })
+            return axios.post('/post/update', credentials)
                 .then(({ data }) => {
                     commit("setPostData", data);
                 });
         },
         editProfileConfirm({ commit }, credentials) {
-            console.log(credentials);
             return axios.post("/user/updateConfirm", credentials)
                 .then(({ data }) => {
                     commit("setUserList", data);
@@ -124,14 +120,19 @@ export default new Vuex.Store({
     getters: {
         isLoggedIn: (state) => !!state.user,
         userType: (state) => {
-            if (state.user && state.user.success.data.user_type) {
-                return state.user.success.user_type;
+            if (state.user && state.user.success.data.type) {
+                return state.user.success.type;
             }
             return -1;
         },
         userId: (state) => {
-            if (state.userId) {
+            if (state.userId && state.user.success.data.id) {
                 return state.userId;
+            }
+        },
+        userName: (state) => {
+            if (state.userName && state.user.success.data.name) {
+                return state.userName;
             }
         },
         postTitle: (state) => {
@@ -154,11 +155,6 @@ export default new Vuex.Store({
                 return state.userInfo;
             }
         },
-        // postUpdateTitle: (state) => {
-        //     if (state.post && state.post.title) {
-        //         return state.post.title;
-        //     }
-        // },
         registerName: (state) => {
             if (state.user && state.user.name) {
                 return state.user.name;

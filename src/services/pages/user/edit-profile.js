@@ -3,6 +3,7 @@ export default {
     return {
       userInfo: this.$store.state.userList,
       userId: this.$store.state.userId,
+      oldProfile: this.$store.state.userInfo.profile,
       selectedType: null,
       previewProfile: "",
       types: [
@@ -13,14 +14,16 @@ export default {
     };
   },
   mounted() {
-    if (this.userInfo.length > 1) {
+    if (this.userInfo.length >= 1) {
       const updatePost = this.userInfo.filter((user) => {
         return (
           user.id == this.userId
         );
       });
       this.userInfo = updatePost[0];
-      //this.userInfo.profile = null;
+
+      this.previewProfile = '';
+      this.userInfo.profile = null;
     }
   },
   methods: {
@@ -43,8 +46,6 @@ export default {
         .then(() => {
           this.error = "";
           this.$router.push({ name: "user-update-confirm" });
-          console.log("====================");
-          console.log(this.userInfo);
         })
         .catch(err => {
           this.error = err.response.data.errors;

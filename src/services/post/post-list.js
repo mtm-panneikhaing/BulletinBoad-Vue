@@ -69,7 +69,6 @@ export default {
                 return (post.id == id);
             });
             this.postDetail = postDetail[0];
-            console.log(this.postDetail);
         },
         filterPost() {
             this.showList = this.$store.state.postList.filter((post) => {
@@ -81,7 +80,6 @@ export default {
         },
         deletePost(id) {
             if (confirm("Do you really want to delete?")) {
-                console.log(id);
                 this.$store.dispatch("deletePost", id)
                     .then(() => {
                         this.error = "";

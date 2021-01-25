@@ -19,7 +19,6 @@ export default {
         .then(() => {
           this.error = "";
           this.$router.push({ name: "user-list" });
-          console.log("router successul");
         })
         .catch(err => {
           console.log(err);

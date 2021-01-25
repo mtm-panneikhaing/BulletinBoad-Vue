@@ -14,15 +14,13 @@ export default {
       formData.append('import_file', this.import_file);
 
       this.$axios.post('/post/import', formData)
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.error = "";
           this.$router.push({ name: "post-list" });
         })
         .catch(error => {
           this.uploading = false
           this.error = error.response.data;
-          console.log('check error: ', this.error)
         });
     },
     clear() {

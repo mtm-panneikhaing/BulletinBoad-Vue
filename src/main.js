@@ -31,17 +31,17 @@ new Vue({
         axios.interceptors.request.use(
             function (config) {
                 if (store.state.user) {
-                    console.log(store.state.user);
-                    store.state.userName = store.state.user.success.name;
+                    store.state.userName = store.state.user.success.data.name;
                     store.state.userId = store.state.user.success.data.id;
-                    console.log("=================");
-                    console.log(store.state.userId);
+                    store.state.userType = store.state.user.success.data.type;
                     store.state.userInfo = store.state.user.success.data;
-                    const tokenType = store.state.user.token_type;
-                    const token = store.state.user.access_token;
+                    /** token */
+                    const tokenType = store.state.user.success.token_type;
+                    const token = store.state.user.success.access_token;
                     if (token) config.headers.Authorization = `${tokenType} ${token}`;
                 }
                 return config;
+
             },
             function (error) {
                 return Promise.reject(error);

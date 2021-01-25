@@ -6,7 +6,7 @@
     <v-form ref="form" @submit.prevent="updateUser()">
       <v-card-text>
         <div>
-          <img :src="userProfile" style="width: 100px; height: 100px" />
+          <img :src="profile" style="width: 100px; height: 100px" />
         </div>
         <div class="user-input mt-4">
           <v-label class="label-title">Name:</v-label>

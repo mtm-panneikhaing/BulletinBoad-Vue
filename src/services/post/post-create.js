@@ -21,6 +21,7 @@ export default {
           this.error = "";
           this.$router.push({ name: "post-create-confirm" });
           console.log("router successul");
+
         })
         .catch(err => {
           this.error = err.response.data.errors;

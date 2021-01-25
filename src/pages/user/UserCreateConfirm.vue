@@ -16,7 +16,11 @@
         </div>
         <div class="user-input">
           <v-label class="label-title">Password:</v-label>
-          <v-label>{{ createUser.password }}</v-label>
+          <v-label>
+            <span style="-webkit-text-security: disc">{{
+              createUser.password
+            }}</span></v-label
+          >
         </div>
         <div class="user-input">
           <v-label class="label-title">Phone:</v-label>
@@ -30,10 +34,6 @@
           <v-label class="label-title">Type:</v-label>
           <v-label>{{ createUser.type == 0 ? "Admin" : "User" }}</v-label>
         </div>
-        <!-- <div class="user-input">
-          <v-label class="label-title">Profile:</v-label>
-          <v-label>{{ userProfile }}</v-label>
-        </div> -->
         <div class="user-input">
           <v-label class="label-title">Address:</v-label>
           <v-label>{{ createUser.address }}</v-label>

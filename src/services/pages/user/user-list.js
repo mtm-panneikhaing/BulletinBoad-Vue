@@ -57,7 +57,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$store.state.user);
     this.$axios
       .get("/user/list")
       .then((response) => {
@@ -86,7 +85,6 @@ export default {
     },
     deleteUser(id) {
       if (confirm("Do you really want to delete? " + id)) {
-        console.log(id);
         //this.$axios.delete('/user/delete' + id)
         this.$store.dispatch("deleteUser", id)
           .then(() => {

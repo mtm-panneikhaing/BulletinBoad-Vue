@@ -7,7 +7,7 @@
       <v-card-text>
         <div>
           <img
-            :src="'http://localhost:8000/images/' + userInfo.profile"
+            :src="'http://localhost:8000/images/' + oldProfile"
             width="100"
             height="100"
           />
