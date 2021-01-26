@@ -6,11 +6,7 @@
     <v-form ref="form" @submit.prevent="editProfileConfirm">
       <v-card-text>
         <div>
-          <img
-            :src="'http://localhost:8000/images/' + oldProfile"
-            width="100"
-            height="100"
-          />
+          <img :src="userInfo.profilePath" width="100" height="100" />
         </div>
         <div class="text-input">
           <v-text-field
@@ -46,13 +42,6 @@
             :items="types"
             @input="setSelected"
           ></v-select>
-          <!-- <v-text-field
-            type="text"
-            label="Type"
-            v-model="userInfo.type"
-            :value="userInfo.type"
-            hide-details="auto"
-          ></v-text-field> -->
         </div>
         <div class="text-input">
           <v-text-field

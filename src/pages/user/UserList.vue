@@ -50,9 +50,7 @@
                   <v-row>
                     <v-col>
                       <img
-                        :src="
-                          'http://localhost:8000/images/' + userDetail.profile
-                        "
+                        :src="userDetail.profilePath"
                         width="100"
                         height="100"
                     /></v-col>

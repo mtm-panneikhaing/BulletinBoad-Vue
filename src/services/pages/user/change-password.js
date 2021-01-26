@@ -1,6 +1,7 @@
 export default {
     data() {
         return {
+            error: '',
             password: {
                 userId: this.$store.state.userId,
                 old_password: "",
@@ -21,8 +22,11 @@ export default {
                     this.$router.push({ name: "user-list" });
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.error = err.response.data.errors;
                 });
+        },
+        clear() {
+            this.error = " ";
         }
     }
 };

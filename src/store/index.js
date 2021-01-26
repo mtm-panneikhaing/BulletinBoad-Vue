@@ -19,6 +19,7 @@ export default new Vuex.Store({
         userProfile: "",
         userInfo: [],
         createUser: [],
+        profile: '',
     },
     mutations: {
         /**
@@ -26,6 +27,9 @@ export default new Vuex.Store({
          * @param {*} state
          * @param {*} postData
          */
+        setProfle(state, profile) {
+            state.profile = profile;
+        },
         setUserData(state, userData) {
             state.user = userData;
         },
@@ -210,8 +214,6 @@ export default new Vuex.Store({
                 return state.createUser;
             }
         },
-
-
     },
     plugins: [createPersistedState()],
 });

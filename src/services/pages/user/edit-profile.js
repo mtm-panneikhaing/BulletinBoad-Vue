@@ -3,7 +3,7 @@ export default {
         return {
             userInfo: this.$store.state.userList,
             userId: this.$store.state.userId,
-            oldProfile: this.$store.state.userInfo.profile,
+            //oldProfile: this.$store.state.userInfo.profile,
             selectedType: null,
             previewProfile: "",
             types: [
@@ -23,6 +23,7 @@ export default {
             this.userInfo = updatePost[0];
 
             this.previewProfile = '';
+            //this.$stoe.state.dispatch("setProfile", this.userInfo.profile);
             this.userInfo.profile = null;
         }
     },

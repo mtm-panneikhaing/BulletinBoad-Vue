@@ -3,16 +3,7 @@ export default {
         return {
             userList: this.$store.state.userList,
             userProfile: this.$store.state.userProfile,
-            profile: '',
         }
-    },
-    mounted() {
-        if (this.userProfile) {
-            this.profile = this.userProfile;
-        } else {
-            this.profile = 'http://localhost:8000/images/' + this.state.user.profile;
-        }
-        console.log(this.userList.profile);
     },
     methods: {
         /**
