@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" max-width="344">
-    <v-card-title class="create-post-title">
+    <v-card-title class="create-user-title">
       <v-card-actions>
         <div class="action">
           <v-spacer></v-spacer>
@@ -8,7 +8,7 @@
             large
             color="primary"
             :to="{ name: 'edit-profile' }"
-            class="post-list-btn mr-4"
+            class="user-list-btn mr-4"
             >Edit</v-btn
           >
         </div>
@@ -51,3 +51,5 @@
 </template>
 <script src="../../services/pages/user/user-profile.js">
 </script>
+<style scoped src="../../assets/css/pages/user/user-profile.css">
+</style>

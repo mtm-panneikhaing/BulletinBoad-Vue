@@ -96,7 +96,7 @@
           </v-dialog>
         </template>
         <template v-slot:[`item.operation`]="{ item }">
-          <template v-if="item.create_user_id == userId">
+          <template>
             <v-row>
               <div class="operation-btn">
                 <v-btn

@@ -54,3 +54,5 @@
 </template>
 <script src="../../services/pages/user/user-update-confirm.js">
 </script>
+<style scoped src="../../assets/css/pages/user/user-create.css">
+</style>

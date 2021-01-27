@@ -1,14 +1,15 @@
 export default {
     data() {
         return {
-            error: '',
             password: {
-                userId: this.$store.state.userId,
                 old_password: "",
                 new_password: "",
                 con_new_password: "",
-            }
-        }
+            },
+            error: "",
+            err_msg: "",
+            def_err_msg: "The given data was invalid.",
+        };
     },
     methods: {
         /**
@@ -23,10 +24,14 @@ export default {
                 })
                 .catch(err => {
                     this.error = err.response.data.errors;
+                    if (err.response.data.message) {
+                        this.err_msg = err.response.data.message;
+                    }
                 });
         },
         clear() {
             this.error = " ";
+            this.err = " ";
         }
     }
 };

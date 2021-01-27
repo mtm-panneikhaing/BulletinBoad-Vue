@@ -11,16 +11,21 @@
             type="password"
             label="Old Password"
             hide-details="auto"
+            class="error-box"
           >
           </v-text-field>
           <span v-if="error && error.old_password" class="error-message">{{
             error.old_password[0]
+          }}</span>
+          <span v-if="err_msg != def_err_msg" class="error-message">{{
+            err_msg
           }}</span>
           <v-text-field
             v-model="password.new_password"
             type="password"
             label="New Password"
             hide-details="auto"
+            class="error-box"
           >
             <span v-if="error && error.new_password" class="error-message">{{
               error.new_password[0]
@@ -31,6 +36,7 @@
             type="password"
             label="Confirm New Password"
             hide-details="auto"
+            class="error-box"
           >
             <span
               v-if="error && error.con_new_password"
